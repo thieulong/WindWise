@@ -1,5 +1,7 @@
 {
     "mqtt_username": "raspberrypi",
     "mqtt_password": "PiForLife",
-    "mqtt_cluster": "cb3e9e35901d4efb8e4cc935745a4529.s1.eu.hivemq.cloud"
+    "mqtt_cluster": "cb3e9e35901d4efb8e4cc935745a4529.s1.eu.hivemq.cloud",
+    "mqtt_broker": "broker.emqx.io",
+    "mqtt_port": "1883"
 }

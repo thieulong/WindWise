@@ -5,7 +5,7 @@ import time
 
 import json
 
-with open('/home/paul/Automated-Windmill/windmill_config.json') as file:
+with open('/home/paul/WindWise/windmill_config.json') as file:
     windmill_config = json.load(file)
 
 servo_pin = windmill_config['servo_pin']

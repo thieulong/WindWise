@@ -2,7 +2,7 @@
 import json
 from grove_rotary_angle_sensor import GroveRotaryAngleSensor
 
-with open('/home/paul/Automated-Windmill/windmill_config.json') as file:
+with open('/home/paul/WindWise/windmill_config.json') as file:
     windmill_config = json.load(file)
 
 rotary_pin = windmill_config['rotary_potentiometer_pin']

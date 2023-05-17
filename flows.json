@@ -1,0 +1,27 @@
+[
+    {
+        "id": "2867cb0c9d5b7d40",
+        "type": "remote-access",
+        "z": "8945b3864a3e6150",
+        "confignode": "dfcb767680edc199",
+        "name": "",
+        "verbose": 0,
+        "x": 160,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dfcb767680edc199",
+        "type": "remote-config",
+        "name": "WindWise",
+        "host": "10.136.51.60",
+        "protocol": "http",
+        "port": "1880",
+        "baseurl": "/",
+        "instancehash": "inzl8h7ra4ylcy7selx78kmnej75qpr7af69oq1xdibyb85g0ndyi3vov907fb5p",
+        "server": "nodered02.remote-red.com",
+        "region": "de"
+    }
+]

@@ -10,10 +10,10 @@ import timer_multithreading
 import time
 import json
 
-with open('/home/paul/Automated-Windmill/windmill_config.json') as file:
+with open('/home/paul/WindWise/windmill_config.json') as file:
     windmill_config = json.load(file)
 
-with open('/home/paul/Automated-Windmill/mqtt_config.json') as file:
+with open('/home/paul/WindWise/mqtt_config.json') as file:
     mqtt_config = json.load(file)
 
 reset_duration = windmill_config['reset_duration']
@@ -51,7 +51,7 @@ flag = 0
 while True:
     wind_direction = rotary_angle.current_reading()
     new_angle = round(functions.map_range(wind_direction, 0, 999, 0, 180))
-    if new_angle != current_angle:
+    if new_angle not in range(current_angle-5, current_angle+5):
         flag += 1
         print(flag)
         if flag > 1:
@@ -62,5 +62,5 @@ while True:
         timer_thread.start()
     servo_control.auto_change_angle(current_angle, new_angle)
     current_angle = new_angle
-    client.publish("windmill/windmill_1", payload=current_angle, qos=0)
+    client.publish("windmill/windmill_1/angle", payload=current_angle, qos=0)
     time.sleep(reset_duration)
