@@ -1,5 +1,795 @@
 [
     {
+        "id": "8945b3864a3e6150",
+        "type": "tab",
+        "label": "Process",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c592edfa34eca3b6",
+        "type": "exec",
+        "z": "8945b3864a3e6150",
+        "command": "python3 ~/WindWise/auto_rotation_mode.py",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Auto Mode",
+        "x": 770,
+        "y": 120,
+        "wires": [
+            [
+                "35ede8f3053a1230"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "fc661a0f4907fa93",
+        "type": "inject",
+        "z": "8945b3864a3e6150",
+        "name": "Auto mode testing",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 510,
+        "y": 80,
+        "wires": [
+            [
+                "c592edfa34eca3b6"
+            ]
+        ]
+    },
+    {
+        "id": "35ede8f3053a1230",
+        "type": "debug",
+        "z": "8945b3864a3e6150",
+        "name": "Print debug",
+        "active": false,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1060,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "b7e14304195fd013",
+        "type": "switch",
+        "z": "8945b3864a3e6150",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 590,
+        "y": 220,
+        "wires": [
+            [
+                "c592edfa34eca3b6",
+                "36a6dca6c817df90"
+            ],
+            [
+                "9ff75aa31b690bcf",
+                "36a6dca6c817df90"
+            ]
+        ]
+    },
+    {
+        "id": "9826e69491d06e00",
+        "type": "exec",
+        "z": "8945b3864a3e6150",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Manual Mode",
+        "x": 980,
+        "y": 380,
+        "wires": [
+            [
+                "acc8c225bf6d3461"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "ccba7a6bbfe2c29e",
+        "type": "ui_slider",
+        "z": "8945b3864a3e6150",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "group": "cf5b961ef5132465",
+        "order": 5,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "outs": "all",
+        "topic": "",
+        "topicType": "str",
+        "min": 0,
+        "max": "180",
+        "step": 1,
+        "className": "",
+        "x": 550,
+        "y": 460,
+        "wires": [
+            [
+                "10a57775fbdc5c4f",
+                "8196d56e.6881e"
+            ]
+        ]
+    },
+    {
+        "id": "0068ee20c88841d0",
+        "type": "ui_gauge",
+        "z": "8945b3864a3e6150",
+        "name": "",
+        "group": "cf5b961ef5132465",
+        "order": 1,
+        "width": "6",
+        "height": "3",
+        "gtype": "gage",
+        "title": "<font size = 5> Current Servo Motor Angle",
+        "label": "",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "180",
+        "colors": [
+            "#db9600",
+            "#009919",
+            "#db9600"
+        ],
+        "seg1": "45",
+        "seg2": "135",
+        "diff": false,
+        "className": "",
+        "x": 580,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "64c2e9ed9aa37938",
+        "type": "ui_chart",
+        "z": "8945b3864a3e6150",
+        "name": "",
+        "group": "cf5b961ef5132465",
+        "order": 2,
+        "width": "6",
+        "height": "4",
+        "label": "<font size = 5> Servo Motor Rotation History",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": true,
+        "ymin": "0",
+        "ymax": "180",
+        "removeOlder": "24",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 590,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9a3abd46ee57e7b0",
+        "type": "ui_switch",
+        "z": "8945b3864a3e6150",
+        "name": "Auto-Rotation Switch",
+        "label": "<font size = 5> <br> Auto-Rotation Mode",
+        "tooltip": "Switch between MANUAL/AUTO Rotation Mode",
+        "group": "cf5b961ef5132465",
+        "order": 3,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "decouple": "false",
+        "topic": "switch",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 380,
+        "y": 220,
+        "wires": [
+            [
+                "b7e14304195fd013",
+                "f350ec1acdcf40ca"
+            ]
+        ]
+    },
+    {
+        "id": "64327255457757f2",
+        "type": "inject",
+        "z": "8945b3864a3e6150",
+        "name": "Manual mode testing",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "90",
+        "payloadType": "num",
+        "x": 510,
+        "y": 380,
+        "wires": [
+            [
+                "9826e69491d06e00",
+                "ccba7a6bbfe2c29e"
+            ]
+        ]
+    },
+    {
+        "id": "acc8c225bf6d3461",
+        "type": "debug",
+        "z": "8945b3864a3e6150",
+        "name": "Print debug",
+        "active": false,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1200,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "9ff75aa31b690bcf",
+        "type": "change",
+        "z": "8945b3864a3e6150",
+        "name": "set to pid",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "pid",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 300,
+        "wires": [
+            [
+                "2ab67821a91905b9",
+                "9826e69491d06e00"
+            ]
+        ]
+    },
+    {
+        "id": "2ab67821a91905b9",
+        "type": "exec",
+        "z": "8945b3864a3e6150",
+        "command": "kill ",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 1030,
+        "y": 240,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "ad2165b6578cd5fd",
+        "type": "inject",
+        "z": "8945b3864a3e6150",
+        "name": "on",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "9a3abd46ee57e7b0"
+            ]
+        ]
+    },
+    {
+        "id": "d9e7bb77270f8a00",
+        "type": "inject",
+        "z": "8945b3864a3e6150",
+        "name": "off",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 170,
+        "y": 280,
+        "wires": [
+            [
+                "9a3abd46ee57e7b0"
+            ]
+        ]
+    },
+    {
+        "id": "b2d20c203919b3a5",
+        "type": "status",
+        "z": "8945b3864a3e6150",
+        "name": "",
+        "scope": [
+            "c592edfa34eca3b6"
+        ],
+        "x": 140,
+        "y": 900,
+        "wires": [
+            [
+                "f43a10bac467ba58"
+            ]
+        ]
+    },
+    {
+        "id": "f43a10bac467ba58",
+        "type": "function",
+        "z": "8945b3864a3e6150",
+        "name": "get pid",
+        "func": "if(msg.status.text){\n    let pid = msg.status.text.split(':');\n    msg.payload = pid[1];\n    return msg;\n} else {\n    return null;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 1020,
+        "wires": [
+            [
+                "fb29f4a55910aeb8"
+            ]
+        ]
+    },
+    {
+        "id": "fb29f4a55910aeb8",
+        "type": "change",
+        "z": "8945b3864a3e6150",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "pid",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "10a57775fbdc5c4f",
+        "type": "change",
+        "z": "8945b3864a3e6150",
+        "name": "Build Command",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "\"python3 ~/WindWise/manual_rotation_mode.py \" & payload",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 460,
+        "wires": [
+            [
+                "9826e69491d06e00"
+            ]
+        ]
+    },
+    {
+        "id": "8196d56e.6881e",
+        "type": "change",
+        "z": "8945b3864a3e6150",
+        "name": "Extract Value",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$number(payload)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 540,
+        "wires": [
+            [
+                "faca0f34f586667f",
+                "ad928d60eb28d16a"
+            ]
+        ]
+    },
+    {
+        "id": "ad928d60eb28d16a",
+        "type": "mqtt out",
+        "z": "8945b3864a3e6150",
+        "name": "",
+        "topic": "windmill/windmill_1/angle",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "text/plain",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "344d6500950bd7e4",
+        "x": 1010,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "faca0f34f586667f",
+        "type": "debug",
+        "z": "8945b3864a3e6150",
+        "name": "Print debug",
+        "active": false,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "424f11d14388ea3b",
+        "type": "mqtt in",
+        "z": "8945b3864a3e6150",
+        "name": "",
+        "topic": "windmill/windmill_1/angle",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "344d6500950bd7e4",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 210,
+        "y": 600,
+        "wires": [
+            [
+                "9999341296c21077"
+            ]
+        ]
+    },
+    {
+        "id": "9e1a38088d01912e",
+        "type": "debug",
+        "z": "8945b3864a3e6150",
+        "name": "Print debug",
+        "active": false,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "9999341296c21077",
+        "type": "change",
+        "z": "8945b3864a3e6150",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$number(payload)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 200,
+        "y": 760,
+        "wires": [
+            [
+                "9e1a38088d01912e",
+                "0068ee20c88841d0",
+                "64c2e9ed9aa37938"
+            ]
+        ]
+    },
+    {
+        "id": "06a7fb2174cafa18",
+        "type": "ui_text",
+        "z": "8945b3864a3e6150",
+        "group": "cf5b961ef5132465",
+        "order": 4,
+        "width": "0",
+        "height": "0",
+        "name": "",
+        "label": "<font size = 5> <br> Manually adjust current windmill angle by sliding the bar",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 830,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "f350ec1acdcf40ca",
+        "type": "function",
+        "z": "8945b3864a3e6150",
+        "name": "Switch Status",
+        "func": "if (msg.payload == true) {\n    // Switch is on\n    msg.enabled = false;\n} else {\n    // Switch is off\n    msg.enabled = true;\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 460,
+        "wires": [
+            [
+                "ccba7a6bbfe2c29e"
+            ]
+        ]
+    },
+    {
+        "id": "2997c5c26adf5fcf",
+        "type": "ui_chart",
+        "z": "8945b3864a3e6150",
+        "name": "",
+        "group": "cf5b961ef5132465",
+        "order": 2,
+        "width": "6",
+        "height": "4",
+        "label": "<font size = 5> Wind-generated current",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": true,
+        "ymin": "-10",
+        "ymax": "10",
+        "removeOlder": "24",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#ff7b00",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2eb22e",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1030,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "63ec1369eaa9faf5",
+        "type": "mqtt in",
+        "z": "8945b3864a3e6150",
+        "name": "",
+        "topic": "windmill/windmill_1/current",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "344d6500950bd7e4",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 790,
+        "y": 920,
+        "wires": [
+            [
+                "01819b45130af8fc"
+            ]
+        ]
+    },
+    {
+        "id": "7f133dc3f2851e3a",
+        "type": "debug",
+        "z": "8945b3864a3e6150",
+        "name": "Print debug",
+        "active": false,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1160,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "01819b45130af8fc",
+        "type": "change",
+        "z": "8945b3864a3e6150",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$number(payload)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 900,
+        "y": 840,
+        "wires": [
+            [
+                "7f133dc3f2851e3a",
+                "2997c5c26adf5fcf"
+            ]
+        ]
+    },
+    {
+        "id": "36a6dca6c817df90",
+        "type": "exec",
+        "z": "8945b3864a3e6150",
+        "command": "python3 ~/WindWise/current_sensor_mqtt.py",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Generated current",
+        "x": 810,
+        "y": 220,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
         "id": "2867cb0c9d5b7d40",
         "type": "remote-access",
         "z": "8945b3864a3e6150",
@@ -13,6 +803,45 @@
         ]
     },
     {
+        "id": "cf5b961ef5132465",
+        "type": "ui_group",
+        "name": "Current Windmill",
+        "tab": "38d12aed8eb334bb",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "344d6500950bd7e4",
+        "type": "mqtt-broker",
+        "name": "HiveMQ Broker",
+        "broker": "cb3e9e35901d4efb8e4cc935745a4529.s1.eu.hivemq.cloud",
+        "port": "8883",
+        "tls": "",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": "5",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
         "id": "dfcb767680edc199",
         "type": "remote-config",
         "name": "WindWise",
@@ -23,5 +852,14 @@
         "instancehash": "inzl8h7ra4ylcy7selx78kmnej75qpr7af69oq1xdibyb85g0ndyi3vov907fb5p",
         "server": "nodered02.remote-red.com",
         "region": "de"
+    },
+    {
+        "id": "38d12aed8eb334bb",
+        "type": "ui_tab",
+        "name": "Windmill Control System",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
     }
 ]
