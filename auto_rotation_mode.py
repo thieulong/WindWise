@@ -52,10 +52,13 @@ while True:
     wind_direction = rotary_angle.current_reading()
     new_angle = round(functions.map_range(wind_direction, 0, 999, 0, 180))
     if new_angle not in range(current_angle-5, current_angle+5):
+        with open("angles.txt", 'w') as file:
+            file.write("{}\n".format(current_angle))
+            file.write("{}\n".format(new_angle))
         flag += 1
-        print(flag)
+        print("Flag:",flag)
         if flag > 1:
-            flag = 0
+            flag -= 1
             stop_event.set()
         stop_event = threading.Event()
         timer_thread = threading.Thread(target=timer_multithreading.start_timer, args=(stop_event,))

@@ -8,8 +8,13 @@ TOKEN = telegram_services['TOKEN']
 client_id = telegram_services['client_id']
 
 def send_notifications(client_list=client_id):
+    with open("angles.txt", 'r') as file:
+        lines = file.readlines()
+    current_angle = int(lines[0].strip())
+    new_angle = int(lines[1].strip())
     for client in range(len(client_list)):
         client_id = client_list[client]
-        message = "Windmill #1 has just changed its direction!"
+        message = "[INFO] Windmill 1 has just changed its direction. From {}° to {}°.".format(current_angle, new_angle)
         url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={client_id}&text={message}"
         requests.get(url).json()
+
