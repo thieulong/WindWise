@@ -5,6 +5,11 @@ from paho import mqtt
 import time
 import random
 
+with open('/home/paul/WindWise/windmill_config.json') as file:
+    windmill_config = json.load(file)
+
+windmill_name = windmill_config['name']
+
 with open('/home/paul/WindWise/mqtt_config.json') as file:
     mqtt_config = json.load(file)
 
@@ -61,10 +66,20 @@ client.loop_start()
 ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
 ser.reset_input_buffer()
 
-while True:
-    if ser.in_waiting > 0:
-        current = float(ser.readline().decode('utf-8').rstrip())
-        client.publish("windmill/windmill_1/current", payload=current, qos=0)
-        time.sleep(1)
+try:
+    while True:
+        if ser.in_waiting > 0:
+            current = float(ser.readline().decode('utf-8').rstrip())
+            print(current)
+            if current < -37 or current > 37:
+                error_msg = "{} - Motor current sensor failed".format(windmill_name)
+                client.publish("windmill/windmill_1/status", payload=error_msg, qos=0)
+            else:
+                client.publish("windmill/windmill_1/current", payload=current, qos=0)
+                time.sleep(1)
+                publish(emqx_client)
 
-        publish(emqx_client)
+except IOError:
+    error_msg = "{} - Motor current sensor disconnected".format(windmill_name)
+    client.publish("windmill/windmill_1/status", payload=error_msg, qos=0)
+    time.sleep(1)
